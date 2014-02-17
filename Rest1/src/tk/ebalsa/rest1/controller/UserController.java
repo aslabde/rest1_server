@@ -33,16 +33,14 @@ public class UserController {
 
 	//Invoked from Android client. New user
 	
-	@RequestMapping("/register")
-	    public @ResponseBody ResponseEntity<User> createUser(@RequestBody User user, UriComponentsBuilder builder) {
+	@RequestMapping(value="/register", produces="application/json")
+	    public @ResponseBody ResponseEntity<MyReturn> createUser(@RequestBody User user, UriComponentsBuilder builder) {
+			System.out.println(user.getName());
+			System.out.println(user.getPass());
+			
+		  MyReturn ret = userBo.registerUser(user);
 
-	       	String result = userBo.registerUser(user);
-		  	
-	       	if (result.equals("success")){
-	       	 return new ResponseEntity<User>(HttpStatus.CREATED);
-	       	}
-	       	
-	       	return new ResponseEntity<User>(HttpStatus.CONFLICT);
+	      return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
 	       
 	    }
 

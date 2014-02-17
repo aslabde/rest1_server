@@ -23,25 +23,23 @@ public class UserBoImpl implements UserBo {
 
 
 	@Override
-	public String registerUser(User user) {
+	public MyReturn registerUser(User incomingUser) {
 
-		try{
-			List<User> usersFound = userRepository.findByName(user.getName());
+		List list=null;
+		MyReturn ret = new MyReturn();
+		ret.setBody(statusType.ERROR);
+		list= userRepository.findByName(incomingUser.getName());
 			
-			
-			if(usersFound.isEmpty()){
-				userRepository.save(user);
-				return "success";
-			}
-			
-			return "userExists";
-		
-		}catch (Exception e){
-			 e.printStackTrace();
-			 return "error";
+		//User not found
+		if (!list.isEmpty()){
+			ret.setBody(statusType.CONFLICT);
+			return ret;
 		}
+				
+		 userRepository.save(incomingUser);
+		 ret.setBody(statusType.OK);
+		 return ret;
 		
-
 	}		
 
 	@Override
