@@ -10,40 +10,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import tk.ebalsa.rest1.bo.ResourceBo;
 import tk.ebalsa.rest1.bo.UserBo;
 import tk.ebalsa.rest1.model.MyReturn;
 import tk.ebalsa.rest1.model.MyReturn.statusType;
+import tk.ebalsa.rest1.model.Resource;
 import tk.ebalsa.rest1.model.User;
 
 @Controller
-
-public class UserController {
+@RequestMapping("/resource")
+public class ResourceController {
 	
 	@Autowired
-	UserBo userBo;
-	
+	ResourceBo resourceBo;
 	//DI via Spring	
-	public void setUserBo(UserBo userBo) {
-		this.userBo = userBo;
+	public void setUserBo(ResourceBo resourceBo) {
+		this.resourceBo = resourceBo;
 	}
 
 
-	//Invoked from Android client. New user
 	
-	@RequestMapping(value="/register", produces="application/json")
-	    public @ResponseBody ResponseEntity<MyReturn> createUser(@RequestBody User user, UriComponentsBuilder builder) {
-						
-		  MyReturn ret = userBo.registerUser(user);
-
-	      return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
-	       
-	    }
-
-	//Invoked from Android client. Login user
-	  @RequestMapping(value="/login", produces="application/json")
-	  public  @ResponseBody ResponseEntity<MyReturn> login(@RequestBody User user, UriComponentsBuilder builder) {
+	//Invoked from MKT client. Post new resource
+	  @RequestMapping(method=RequestMethod.POST, produces="application/json")
+	  public  @ResponseBody ResponseEntity<MyReturn> newResource
+	  				(@RequestBody Resource resource, UriComponentsBuilder builder) {
 	   
-	      MyReturn ret = userBo.loginUser(user);
+	      MyReturn ret = resourceBo.saveResource(resource);
 
 	      return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
 	      
@@ -53,9 +45,9 @@ public class UserController {
 	 
 	  
 	  
-	  //Experimental
-	  @RequestMapping(value="/catalog", method=RequestMethod.GET, produces="application/json")
-	  public  @ResponseBody ResponseEntity<MyReturn> catalog() {
+	  //Experimental future resources.
+	  @RequestMapping(method=RequestMethod.GET, produces="application/json")
+	  public  @ResponseBody ResponseEntity<MyReturn> resources() {
 		   
 	     return null;
 	      
