@@ -30,8 +30,7 @@ import com.jolbox.bonecp.BoneCPDataSource;
 
 @Configuration
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = "tk.ebalsa.rest1.persistence",
-	includeFilters = @ComponentScan.Filter(value = {UserRepository.class}, type = FilterType.ASSIGNABLE_TYPE))
+@EnableJpaRepositories(basePackages = "tk.ebalsa.rest1.persistence")
 @EnableTransactionManagement
 @ComponentScan("tk.ebalsa.rest1")
 @PropertySource("classpath:/tk/ebalsa/rest1/config/app.properties")

@@ -1,5 +1,7 @@
 package tk.ebalsa.rest1.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +9,6 @@ import tk.ebalsa.rest1.model.CatalogUnit;
 import tk.ebalsa.rest1.model.MyReturn;
 import tk.ebalsa.rest1.model.MyReturn.statusType;
 import tk.ebalsa.rest1.persistence.CatalogUnitRepository;
-import tk.ebalsa.rest1.persistence.UserRepository;
 
 @Service
 public class CatalogUnitBoImpl implements CatalogUnitBo {
@@ -34,6 +35,12 @@ public class CatalogUnitBoImpl implements CatalogUnitBo {
 			return ret;
 		}
 		
+	}
+
+
+	@Override
+	public List<CatalogUnit> catalog() {
+		return (List<CatalogUnit>)this.catalogUnitRepository.findAll();
 	}
 	
 	

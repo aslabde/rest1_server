@@ -1,6 +1,7 @@
 package tk.ebalsa.rest1.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import tk.ebalsa.rest1.bo.CatalogUnitBo;
+import tk.ebalsa.rest1.model.CatalogUnit;
 import tk.ebalsa.rest1.model.MyReturn;
 
 @Controller
@@ -26,8 +28,8 @@ public class CatalogController {
 	}
 
 
-	
-	//Invoked from Android client. Catalog entry pont
+	/*
+	//Invoked from Android client. Catalog entry point
 	  @RequestMapping(method=RequestMethod.GET, produces="application/json")
 	  public  @ResponseBody ResponseEntity<MyReturn> catalog
 	  				(@RequestBody Date date, UriComponentsBuilder builder) {
@@ -37,9 +39,19 @@ public class CatalogController {
 	      //TODO- return units after given date
 	      
 	      
-	    } 
+	    } */
 	  
-	 
+	//Provisional Catalog entry point
+	  @RequestMapping(method=RequestMethod.GET, produces="application/json")
+	  public  @ResponseBody List<CatalogUnit> catalog
+	  				() {
+	   
+	       return this.catalogUnitBo.catalog();
+	      
+	      //TODO- return units after given date
+	      
+	      
+	    }
   
 	
 

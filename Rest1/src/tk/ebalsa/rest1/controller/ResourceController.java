@@ -18,7 +18,7 @@ import tk.ebalsa.rest1.model.Resource;
 import tk.ebalsa.rest1.model.User;
 
 @Controller
-@RequestMapping("/resource")
+@RequestMapping("/resources")
 public class ResourceController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class ResourceController {
 	
 	//Invoked from MKT client. Post new resource
 	  @RequestMapping(method=RequestMethod.POST, produces="application/json")
-	  public  @ResponseBody ResponseEntity<MyReturn> newResource
+	  public  @ResponseBody ResponseEntity<MyReturn> postResource
 	  				(@RequestBody Resource resource, UriComponentsBuilder builder) {
 	   
 	      MyReturn ret = resourceBo.saveResource(resource);

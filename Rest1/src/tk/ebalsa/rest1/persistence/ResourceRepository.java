@@ -6,12 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ebalsa.rest1.model.Resource;
-import tk.ebalsa.rest1.model.User;
 
 
 @Repository
 public interface ResourceRepository extends CrudRepository<Resource, Long>{
 	
-	List<Resource> findByName (String name);
+	List<Resource> findByTitle (String title);
 	
 }

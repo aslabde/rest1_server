@@ -50,16 +50,5 @@ public class UserController {
 	      
 	    } 
 	  
-	 
-	  
-	  
-	  //Experimental
-	  @RequestMapping(value="/catalog", method=RequestMethod.GET, produces="application/json")
-	  public  @ResponseBody ResponseEntity<MyReturn> catalog() {
-		   
-	     return null;
-	      
-	      
-	    } 
-
+	 	  	  	  
 }
