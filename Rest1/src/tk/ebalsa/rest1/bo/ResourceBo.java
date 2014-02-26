@@ -8,6 +8,7 @@ public interface ResourceBo {
 	
 	
 	MyReturn saveResource(Resource resource);
+	Resource getResource(long id);
 	
 	
 

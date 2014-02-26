@@ -28,18 +28,6 @@ public class CatalogController {
 	}
 
 
-	/*
-	//Invoked from Android client. Catalog entry point
-	  @RequestMapping(method=RequestMethod.GET, produces="application/json")
-	  public  @ResponseBody ResponseEntity<MyReturn> catalog
-	  				(@RequestBody Date date, UriComponentsBuilder builder) {
-	   
-	      return null;
-	      
-	      //TODO- return units after given date
-	      
-	      
-	    } */
 	  
 	//Provisional Catalog entry point
 	  @RequestMapping(method=RequestMethod.GET, produces="application/json")
@@ -48,8 +36,7 @@ public class CatalogController {
 	   
 	       return this.catalogUnitBo.catalog();
 	      
-	      //TODO- return units after given date
-	      
+	  	      
 	      
 	    }
   

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,11 +46,12 @@ public class ResourceController {
 	 
 	  
 	  
-	  //Experimental future resources.
-	  @RequestMapping(method=RequestMethod.GET, produces="application/json")
-	  public  @ResponseBody ResponseEntity<MyReturn> resources() {
+	  //R
+	  @RequestMapping(value="/{id}", method=RequestMethod.GET, produces="application/json")
+	  public  @ResponseBody Resource getResource(@PathVariable long id) {
 		   
-	     return null;
+		
+		  return this.resourceBo.getResource(id);
 	      
 	      
 	    } 
