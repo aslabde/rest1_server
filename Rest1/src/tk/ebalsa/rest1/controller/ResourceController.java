@@ -46,16 +46,17 @@ public class ResourceController {
 
 	
 	
-	//Invoked from MKT client. Post new Text or Visual resource
-	 @RequestMapping(method=RequestMethod.POST, produces="application/json")
+	//Invoked from MKT client. Post new resource
+   @RequestMapping(method=RequestMethod.POST, produces="application/json")
 	  public  @ResponseBody ResponseEntity<MyReturn> postResource
 	  				(@RequestBody VisualResource resource, UriComponentsBuilder builder) {
-		
-	     MyReturn ret = resourceBo.saveResource(resource);
+   
+	      MyReturn ret = resourceBo.saveResource(resource);
 
-	     return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
-			      
-	    } 
+	      return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
+	      	      
+
+   } 
 	 
 	  
 	  

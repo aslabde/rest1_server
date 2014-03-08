@@ -43,7 +43,7 @@ public class ResourceBoImpl implements ResourceBo {
 				.append(resource.getResourceId())
 				.toString();
 			
-			CatalogUnit unit = new CatalogUnit(url , resource.getPublishingDate(),
+			CatalogUnit unit = new CatalogUnit(url , resource.getPubDate(),
 					resource.getEndDate());
 			
 			this.cuBo.registerCatalogUnit(unit);
