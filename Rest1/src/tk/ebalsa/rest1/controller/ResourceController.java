@@ -1,5 +1,18 @@
 package tk.ebalsa.rest1.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+
+
+
+
+
+import javax.swing.JOptionPane;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +30,7 @@ import tk.ebalsa.rest1.model.MyReturn;
 import tk.ebalsa.rest1.model.MyReturn.statusType;
 import tk.ebalsa.rest1.model.Resource;
 import tk.ebalsa.rest1.model.User;
+import tk.ebalsa.rest1.model.VisualResource;
 
 @Controller
 @RequestMapping("/resources")
@@ -31,29 +45,42 @@ public class ResourceController {
 
 
 	
-	//Invoked from MKT client. Post new resource
-	  @RequestMapping(method=RequestMethod.POST, produces="application/json")
+	
+	//Invoked from MKT client. Post new Text or Visual resource
+	 @RequestMapping(method=RequestMethod.POST, produces="application/json")
 	  public  @ResponseBody ResponseEntity<MyReturn> postResource
-	  				(@RequestBody Resource resource, UriComponentsBuilder builder) {
-	   
-	      MyReturn ret = resourceBo.saveResource(resource);
+	  				(@RequestBody VisualResource resource, UriComponentsBuilder builder) {
+		
+	     MyReturn ret = resourceBo.saveResource(resource);
 
-	      return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
+	     return new ResponseEntity<MyReturn>(ret, HttpStatus.ACCEPTED);
+			      
+	    } 
+	 
+	  
+	  
+	  //Invoked from Android. Gets a resource with given id
+	  @RequestMapping(value="/{id}", method=RequestMethod.GET, produces="application/json")
+	  public  @ResponseBody VisualResource getResource(@PathVariable long id) {
+		   
+		
+		  return (VisualResource)this.resourceBo.getResource(id);
+	      
+	      
+	    } 
+	  
+	//TEST: Marshall image
+	  @RequestMapping(value="/image", method=RequestMethod.GET, produces="image/jpg")
+	  public  @ResponseBody byte[] getImage() {
+		   
+		  VisualResource vr =(VisualResource)this.resourceBo.getResource(83);
+		  byte[] byteImage = vr.getImage();
+		  
+		  
+		  return byteImage;
 	      
 	      
 	    } 
 	  
 	 
-	  
-	  
-	  //R
-	  @RequestMapping(value="/{id}", method=RequestMethod.GET, produces="application/json")
-	  public  @ResponseBody Resource getResource(@PathVariable long id) {
-		   
-		
-		  return this.resourceBo.getResource(id);
-	      
-	      
-	    } 
-
 }

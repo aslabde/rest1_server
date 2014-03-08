@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tk.ebalsa.rest1.model.CatalogUnit;
 import tk.ebalsa.rest1.model.MyReturn;
 import tk.ebalsa.rest1.model.Resource;
+import tk.ebalsa.rest1.model.VisualResource;
 import tk.ebalsa.rest1.model.MyReturn.statusType;
 import tk.ebalsa.rest1.persistence.ResourceRepository;
 
@@ -31,7 +32,7 @@ public class ResourceBoImpl implements ResourceBo {
 
 
 	@Override
-	public MyReturn saveResource(Resource resource) {
+	public MyReturn saveResource(Resource resource) { 
 		
 		MyReturn ret = new MyReturn();
 		ret.setBody(statusType.ERROR);

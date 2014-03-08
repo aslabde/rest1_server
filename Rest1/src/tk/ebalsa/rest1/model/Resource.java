@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "resources")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Resource {
 
 	@Id
@@ -21,8 +26,8 @@ public class Resource {
 	public Resource(){};
 	
 
-	public Resource(Date publishingDate, Date endDate, String title, String body) {
-		this.pubDate = publishingDate;
+	public Resource(Date pubDate, Date endDate, String title, String body) {
+		this.pubDate = pubDate;
 		this.endDate = endDate;
 		this.title = title;
 		this.body = body;
@@ -38,17 +43,7 @@ public class Resource {
 		this.resourceId = resourceId;
 	}
 
-
-	public Date getPublishingDate() {
-		return pubDate;
-	}
-
-
-	public void setPublishingDate(Date publishingDate) {
-		this.pubDate = publishingDate;
-	}
-
-
+	
 	public Date getEndDate() {
 		return endDate;
 	}
